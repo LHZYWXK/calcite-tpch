@@ -21,6 +21,9 @@ public class TpchUtil {
     public static RuleSet getRules() {
         return RuleSets.ofList(
                 CoreRules.FILTER_INTO_JOIN,
+                CoreRules.JOIN_ASSOCIATE,
+                CoreRules.JOIN_COMMUTE,
+                CoreRules.JOIN_COMMUTE_OUTER,
                 EnumerableRules.ENUMERABLE_SORT_RULE,
                 EnumerableRules.ENUMERABLE_SORT_RULE,
                 EnumerableRules.ENUMERABLE_PROJECT_RULE,

@@ -5,6 +5,11 @@ Calcite backend project based on Spring Boot 2.7.12 and Calcite 1.34.0.
 ### API
 `localhost:8080/plan?sql=...`
 
+`localhost:8080/plan/file?filename=Q7.sql`
+
+### File Path
+Make sure all sql files are under `data/queries`.
+
 ## Notes
 目前暂未使用 `TpchsSchema` 和 `TpchTableStatistic`，相当于直接把表挂在 `rootSchema` 下面。
 
