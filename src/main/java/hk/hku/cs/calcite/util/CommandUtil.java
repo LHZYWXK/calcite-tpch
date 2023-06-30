@@ -1,5 +1,6 @@
 package hk.hku.cs.calcite.util;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,7 +20,13 @@ public class CommandUtil {
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String line;
             while ((line = reader.readLine()) != null) {
-                res.append(line);
+                logger.info(line);
+                if (line.contains("ROW<") && line.contains("<")) {
+                    res.append(StringEscapeUtils.escapeHtml4(line));
+                }else {
+                    res.append(line);
+                }
+                res.append("<br></br>");
             }
             int status = process.waitFor();
             if (status != 0) {
