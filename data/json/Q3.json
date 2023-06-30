@@ -1,0 +1,283 @@
+{
+  "rels": [
+    {
+      "id": "0",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableTableScan",
+      "table": [
+        "CUSTOMER"
+      ],
+      "inputs": []
+    },
+    {
+      "id": "1",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableFilter",
+      "condition": {
+        "op": {
+          "name": "=",
+          "kind": "EQUALS",
+          "syntax": "BINARY"
+        },
+        "operands": [
+          {
+            "input": 6,
+            "name": "$6"
+          },
+          {
+            "literal": "BUILDING",
+            "type": {
+              "type": "VARCHAR",
+              "nullable": false,
+              "precision": -1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "2",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableTableScan",
+      "table": [
+        "ORDERS"
+      ],
+      "inputs": []
+    },
+    {
+      "id": "3",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableFilter",
+      "condition": {
+        "op": {
+          "name": "<",
+          "kind": "LESS_THAN",
+          "syntax": "BINARY"
+        },
+        "operands": [
+          {
+            "input": 4,
+            "name": "$4"
+          },
+          {
+            "literal": 9204,
+            "type": {
+              "type": "DATE",
+              "nullable": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "4",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableHashJoin",
+      "condition": {
+        "op": {
+          "name": "=",
+          "kind": "EQUALS",
+          "syntax": "BINARY"
+        },
+        "operands": [
+          {
+            "input": 0,
+            "name": "$0"
+          },
+          {
+            "input": 9,
+            "name": "$9"
+          }
+        ]
+      },
+      "joinType": "inner",
+      "inputs": [
+        "1",
+        "3"
+      ]
+    },
+    {
+      "id": "5",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableTableScan",
+      "table": [
+        "LINEITEM"
+      ],
+      "inputs": []
+    },
+    {
+      "id": "6",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableFilter",
+      "condition": {
+        "op": {
+          "name": ">",
+          "kind": "GREATER_THAN",
+          "syntax": "BINARY"
+        },
+        "operands": [
+          {
+            "input": 10,
+            "name": "$10"
+          },
+          {
+            "literal": 9204,
+            "type": {
+              "type": "DATE",
+              "nullable": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "7",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableHashJoin",
+      "condition": {
+        "op": {
+          "name": "=",
+          "kind": "EQUALS",
+          "syntax": "BINARY"
+        },
+        "operands": [
+          {
+            "input": 8,
+            "name": "$8"
+          },
+          {
+            "input": 17,
+            "name": "$17"
+          }
+        ]
+      },
+      "joinType": "inner",
+      "inputs": [
+        "4",
+        "6"
+      ]
+    },
+    {
+      "id": "8",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableProject",
+      "fields": [
+        "l_orderkey",
+        "o_orderdate",
+        "o_shippriority",
+        "$f3"
+      ],
+      "exprs": [
+        {
+          "input": 17,
+          "name": "$17"
+        },
+        {
+          "input": 12,
+          "name": "$12"
+        },
+        {
+          "input": 15,
+          "name": "$15"
+        },
+        {
+          "op": {
+            "name": "*",
+            "kind": "TIMES",
+            "syntax": "BINARY"
+          },
+          "operands": [
+            {
+              "input": 22,
+              "name": "$22"
+            },
+            {
+              "op": {
+                "name": "-",
+                "kind": "MINUS",
+                "syntax": "BINARY"
+              },
+              "operands": [
+                {
+                  "literal": 1.0,
+                  "type": {
+                    "type": "DECIMAL",
+                    "nullable": false,
+                    "precision": 2,
+                    "scale": 1
+                  }
+                },
+                {
+                  "input": 23,
+                  "name": "$23"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableAggregate",
+      "group": [
+        0,
+        1,
+        2
+      ],
+      "aggs": [
+        {
+          "agg": {
+            "name": "SUM",
+            "kind": "SUM",
+            "syntax": "FUNCTION"
+          },
+          "type": {
+            "type": "DOUBLE",
+            "nullable": true
+          },
+          "distinct": false,
+          "operands": [
+            3
+          ],
+          "name": "REVENUE"
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableProject",
+      "fields": [
+        "L_ORDERKEY",
+        "REVENUE",
+        "O_ORDERDATE",
+        "O_SHIPPRIORITY"
+      ],
+      "exprs": [
+        {
+          "input": 0,
+          "name": "$0"
+        },
+        {
+          "input": 3,
+          "name": "$3"
+        },
+        {
+          "input": 1,
+          "name": "$1"
+        },
+        {
+          "input": 2,
+          "name": "$2"
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableSort",
+      "collation": [
+        {
+          "field": 1,
+          "direction": "DESCENDING",
+          "nulls": "FIRST"
+        },
+        {
+          "field": 2,
+          "direction": "ASCENDING",
+          "nulls": "LAST"
+        }
+      ]
+    }
+  ]
+}

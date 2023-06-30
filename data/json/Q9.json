@@ -1,0 +1,387 @@
+{
+  "rels": [
+    {
+      "id": "0",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableTableScan",
+      "table": [
+        "PART"
+      ],
+      "inputs": []
+    },
+    {
+      "id": "1",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableFilter",
+      "condition": {
+        "op": {
+          "name": "LIKE",
+          "kind": "LIKE",
+          "syntax": "SPECIAL"
+        },
+        "operands": [
+          {
+            "input": 1,
+            "name": "$1"
+          },
+          {
+            "literal": "%green%",
+            "type": {
+              "type": "CHAR",
+              "nullable": false,
+              "precision": 7
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "2",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableTableScan",
+      "table": [
+        "SUPPLIER"
+      ],
+      "inputs": []
+    },
+    {
+      "id": "3",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableNestedLoopJoin",
+      "condition": {
+        "literal": true,
+        "type": {
+          "type": "BOOLEAN",
+          "nullable": false
+        }
+      },
+      "joinType": "inner",
+      "inputs": [
+        "1",
+        "2"
+      ]
+    },
+    {
+      "id": "4",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableTableScan",
+      "table": [
+        "LINEITEM"
+      ],
+      "inputs": []
+    },
+    {
+      "id": "5",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableHashJoin",
+      "condition": {
+        "op": {
+          "name": "AND",
+          "kind": "AND",
+          "syntax": "BINARY"
+        },
+        "operands": [
+          {
+            "op": {
+              "name": "=",
+              "kind": "EQUALS",
+              "syntax": "BINARY"
+            },
+            "operands": [
+              {
+                "input": 9,
+                "name": "$9"
+              },
+              {
+                "input": 18,
+                "name": "$18"
+              }
+            ]
+          },
+          {
+            "op": {
+              "name": "=",
+              "kind": "EQUALS",
+              "syntax": "BINARY"
+            },
+            "operands": [
+              {
+                "input": 0,
+                "name": "$0"
+              },
+              {
+                "input": 17,
+                "name": "$17"
+              }
+            ]
+          }
+        ]
+      },
+      "joinType": "inner",
+      "inputs": [
+        "3",
+        "4"
+      ]
+    },
+    {
+      "id": "6",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableTableScan",
+      "table": [
+        "PARTSUPP"
+      ],
+      "inputs": []
+    },
+    {
+      "id": "7",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableHashJoin",
+      "condition": {
+        "op": {
+          "name": "AND",
+          "kind": "AND",
+          "syntax": "BINARY"
+        },
+        "operands": [
+          {
+            "op": {
+              "name": "=",
+              "kind": "EQUALS",
+              "syntax": "BINARY"
+            },
+            "operands": [
+              {
+                "input": 18,
+                "name": "$18"
+              },
+              {
+                "input": 33,
+                "name": "$33"
+              }
+            ]
+          },
+          {
+            "op": {
+              "name": "=",
+              "kind": "EQUALS",
+              "syntax": "BINARY"
+            },
+            "operands": [
+              {
+                "input": 17,
+                "name": "$17"
+              },
+              {
+                "input": 32,
+                "name": "$32"
+              }
+            ]
+          }
+        ]
+      },
+      "joinType": "inner",
+      "inputs": [
+        "5",
+        "6"
+      ]
+    },
+    {
+      "id": "8",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableTableScan",
+      "table": [
+        "ORDERS"
+      ],
+      "inputs": []
+    },
+    {
+      "id": "9",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableHashJoin",
+      "condition": {
+        "op": {
+          "name": "=",
+          "kind": "EQUALS",
+          "syntax": "BINARY"
+        },
+        "operands": [
+          {
+            "input": 16,
+            "name": "$16"
+          },
+          {
+            "input": 37,
+            "name": "$37"
+          }
+        ]
+      },
+      "joinType": "inner",
+      "inputs": [
+        "7",
+        "8"
+      ]
+    },
+    {
+      "id": "10",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableTableScan",
+      "table": [
+        "NATION"
+      ],
+      "inputs": []
+    },
+    {
+      "id": "11",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableHashJoin",
+      "condition": {
+        "op": {
+          "name": "=",
+          "kind": "EQUALS",
+          "syntax": "BINARY"
+        },
+        "operands": [
+          {
+            "input": 12,
+            "name": "$12"
+          },
+          {
+            "input": 46,
+            "name": "$46"
+          }
+        ]
+      },
+      "joinType": "inner",
+      "inputs": [
+        "9",
+        "10"
+      ]
+    },
+    {
+      "id": "12",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableProject",
+      "fields": [
+        "NATION",
+        "O_YEAR",
+        "AMOUNT"
+      ],
+      "exprs": [
+        {
+          "input": 47,
+          "name": "$47"
+        },
+        {
+          "op": {
+            "name": "EXTRACT",
+            "kind": "EXTRACT",
+            "syntax": "FUNCTION"
+          },
+          "operands": [
+            {
+              "literal": "YEAR",
+              "type": {
+                "type": "SYMBOL",
+                "nullable": false
+              }
+            },
+            {
+              "input": 41,
+              "name": "$41"
+            }
+          ]
+        },
+        {
+          "op": {
+            "name": "-",
+            "kind": "MINUS",
+            "syntax": "BINARY"
+          },
+          "operands": [
+            {
+              "op": {
+                "name": "*",
+                "kind": "TIMES",
+                "syntax": "BINARY"
+              },
+              "operands": [
+                {
+                  "input": 21,
+                  "name": "$21"
+                },
+                {
+                  "op": {
+                    "name": "-",
+                    "kind": "MINUS",
+                    "syntax": "BINARY"
+                  },
+                  "operands": [
+                    {
+                      "literal": 1.0,
+                      "type": {
+                        "type": "DECIMAL",
+                        "nullable": false,
+                        "precision": 2,
+                        "scale": 1
+                      }
+                    },
+                    {
+                      "input": 22,
+                      "name": "$22"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "op": {
+                "name": "*",
+                "kind": "TIMES",
+                "syntax": "BINARY"
+              },
+              "operands": [
+                {
+                  "input": 35,
+                  "name": "$35"
+                },
+                {
+                  "input": 20,
+                  "name": "$20"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableAggregate",
+      "group": [
+        0,
+        1
+      ],
+      "aggs": [
+        {
+          "agg": {
+            "name": "SUM",
+            "kind": "SUM",
+            "syntax": "FUNCTION"
+          },
+          "type": {
+            "type": "DOUBLE",
+            "nullable": true
+          },
+          "distinct": false,
+          "operands": [
+            2
+          ],
+          "name": "SUM_PROFIT"
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableSort",
+      "collation": [
+        {
+          "field": 0,
+          "direction": "ASCENDING",
+          "nulls": "LAST"
+        },
+        {
+          "field": 1,
+          "direction": "DESCENDING",
+          "nulls": "FIRST"
+        }
+      ]
+    }
+  ]
+}
