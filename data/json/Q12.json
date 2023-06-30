@@ -1,0 +1,312 @@
+{
+  "rels": [
+    {
+      "id": "0",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableTableScan",
+      "table": [
+        "ORDERS"
+      ],
+      "inputs": []
+    },
+    {
+      "id": "1",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableTableScan",
+      "table": [
+        "LINEITEM"
+      ],
+      "inputs": []
+    },
+    {
+      "id": "2",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableFilter",
+      "condition": {
+        "op": {
+          "name": "AND",
+          "kind": "AND",
+          "syntax": "BINARY"
+        },
+        "operands": [
+          {
+            "op": {
+              "name": "SEARCH",
+              "kind": "SEARCH",
+              "syntax": "INTERNAL"
+            },
+            "operands": [
+              {
+                "input": 14,
+                "name": "$14"
+              },
+              {
+                "literal": "Sarg[_ISO-8859-1'MAIL', _ISO-8859-1'SHIP']",
+                "type": {
+                  "type": "CHAR",
+                  "nullable": false,
+                  "precision": 4
+                }
+              }
+            ]
+          },
+          {
+            "op": {
+              "name": "<",
+              "kind": "LESS_THAN",
+              "syntax": "BINARY"
+            },
+            "operands": [
+              {
+                "input": 11,
+                "name": "$11"
+              },
+              {
+                "input": 12,
+                "name": "$12"
+              }
+            ]
+          },
+          {
+            "op": {
+              "name": "<",
+              "kind": "LESS_THAN",
+              "syntax": "BINARY"
+            },
+            "operands": [
+              {
+                "input": 10,
+                "name": "$10"
+              },
+              {
+                "input": 11,
+                "name": "$11"
+              }
+            ]
+          },
+          {
+            "op": {
+              "name": "SEARCH",
+              "kind": "SEARCH",
+              "syntax": "INTERNAL"
+            },
+            "operands": [
+              {
+                "input": 12,
+                "name": "$12"
+              },
+              {
+                "literal": "Sarg[[1994-01-01..1995-01-01)]",
+                "type": {
+                  "type": "DATE",
+                  "nullable": false
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "3",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableHashJoin",
+      "condition": {
+        "op": {
+          "name": "=",
+          "kind": "EQUALS",
+          "syntax": "BINARY"
+        },
+        "operands": [
+          {
+            "input": 0,
+            "name": "$0"
+          },
+          {
+            "input": 9,
+            "name": "$9"
+          }
+        ]
+      },
+      "joinType": "inner",
+      "inputs": [
+        "0",
+        "2"
+      ]
+    },
+    {
+      "id": "4",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableProject",
+      "fields": [
+        "l_shipmode",
+        "$f1",
+        "$f2"
+      ],
+      "exprs": [
+        {
+          "input": 23,
+          "name": "$23"
+        },
+        {
+          "op": {
+            "name": "CASE",
+            "kind": "CASE",
+            "syntax": "SPECIAL"
+          },
+          "operands": [
+            {
+              "op": {
+                "name": "SEARCH",
+                "kind": "SEARCH",
+                "syntax": "INTERNAL"
+              },
+              "operands": [
+                {
+                  "input": 5,
+                  "name": "$5"
+                },
+                {
+                  "literal": "Sarg[_ISO-8859-1'1-URGENT', _ISO-8859-1'2-HIGH']",
+                  "type": {
+                    "type": "VARCHAR",
+                    "nullable": false,
+                    "precision": -1
+                  }
+                }
+              ]
+            },
+            {
+              "literal": 1,
+              "type": {
+                "type": "INTEGER",
+                "nullable": false
+              }
+            },
+            {
+              "literal": 0,
+              "type": {
+                "type": "INTEGER",
+                "nullable": false
+              }
+            }
+          ]
+        },
+        {
+          "op": {
+            "name": "CASE",
+            "kind": "CASE",
+            "syntax": "SPECIAL"
+          },
+          "operands": [
+            {
+              "op": {
+                "name": "SEARCH",
+                "kind": "SEARCH",
+                "syntax": "INTERNAL"
+              },
+              "operands": [
+                {
+                  "input": 5,
+                  "name": "$5"
+                },
+                {
+                  "literal": "Sarg[(-∞.._ISO-8859-1'1-URGENT'), (_ISO-8859-1'1-URGENT'.._ISO-8859-1'2-HIGH'), (_ISO-8859-1'2-HIGH'..+∞)]",
+                  "type": {
+                    "type": "VARCHAR",
+                    "nullable": false,
+                    "precision": -1
+                  }
+                }
+              ]
+            },
+            {
+              "literal": 1,
+              "type": {
+                "type": "INTEGER",
+                "nullable": false
+              }
+            },
+            {
+              "literal": 0,
+              "type": {
+                "type": "INTEGER",
+                "nullable": false
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableAggregate",
+      "group": [
+        0
+      ],
+      "aggs": [
+        {
+          "agg": {
+            "name": "SUM",
+            "kind": "SUM",
+            "syntax": "FUNCTION"
+          },
+          "type": {
+            "type": "INTEGER",
+            "nullable": false
+          },
+          "distinct": false,
+          "operands": [
+            1
+          ],
+          "name": "HIGH_LINE_COUNT"
+        },
+        {
+          "agg": {
+            "name": "SUM",
+            "kind": "SUM",
+            "syntax": "FUNCTION"
+          },
+          "type": {
+            "type": "INTEGER",
+            "nullable": false
+          },
+          "distinct": false,
+          "operands": [
+            2
+          ],
+          "name": "LOW_LINE_COUNT"
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableProject",
+      "fields": [
+        "L_SHIPMODE",
+        "HIGH_LINE_COUNT",
+        "LOW_LINE_COUNT"
+      ],
+      "exprs": [
+        {
+          "input": 0,
+          "name": "$0"
+        },
+        {
+          "input": 1,
+          "name": "$1"
+        },
+        {
+          "input": 2,
+          "name": "$2"
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableSort",
+      "collation": [
+        {
+          "field": 0,
+          "direction": "ASCENDING",
+          "nulls": "LAST"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,270 @@
+{
+  "rels": [
+    {
+      "id": "0",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableTableScan",
+      "table": [
+        "LINEITEM"
+      ],
+      "inputs": []
+    },
+    {
+      "id": "1",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableFilter",
+      "condition": {
+        "op": {
+          "name": "SEARCH",
+          "kind": "SEARCH",
+          "syntax": "INTERNAL"
+        },
+        "operands": [
+          {
+            "input": 10,
+            "name": "$10"
+          },
+          {
+            "literal": "Sarg[[1995-09-01..1995-10-01)]",
+            "type": {
+              "type": "DATE",
+              "nullable": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "2",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableTableScan",
+      "table": [
+        "PART"
+      ],
+      "inputs": []
+    },
+    {
+      "id": "3",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableHashJoin",
+      "condition": {
+        "op": {
+          "name": "=",
+          "kind": "EQUALS",
+          "syntax": "BINARY"
+        },
+        "operands": [
+          {
+            "input": 1,
+            "name": "$1"
+          },
+          {
+            "input": 16,
+            "name": "$16"
+          }
+        ]
+      },
+      "joinType": "inner",
+      "inputs": [
+        "1",
+        "2"
+      ]
+    },
+    {
+      "id": "4",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableProject",
+      "fields": [
+        "$f0",
+        "$f1"
+      ],
+      "exprs": [
+        {
+          "op": {
+            "name": "CASE",
+            "kind": "CASE",
+            "syntax": "SPECIAL"
+          },
+          "operands": [
+            {
+              "op": {
+                "name": "LIKE",
+                "kind": "LIKE",
+                "syntax": "SPECIAL"
+              },
+              "operands": [
+                {
+                  "input": 20,
+                  "name": "$20"
+                },
+                {
+                  "literal": "PROMO%",
+                  "type": {
+                    "type": "CHAR",
+                    "nullable": false,
+                    "precision": 6
+                  }
+                }
+              ]
+            },
+            {
+              "op": {
+                "name": "*",
+                "kind": "TIMES",
+                "syntax": "BINARY"
+              },
+              "operands": [
+                {
+                  "input": 5,
+                  "name": "$5"
+                },
+                {
+                  "op": {
+                    "name": "-",
+                    "kind": "MINUS",
+                    "syntax": "BINARY"
+                  },
+                  "operands": [
+                    {
+                      "literal": 1.0,
+                      "type": {
+                        "type": "DECIMAL",
+                        "nullable": false,
+                        "precision": 2,
+                        "scale": 1
+                      }
+                    },
+                    {
+                      "input": 6,
+                      "name": "$6"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "literal": 0,
+              "type": {
+                "type": "DOUBLE",
+                "nullable": false
+              }
+            }
+          ]
+        },
+        {
+          "op": {
+            "name": "*",
+            "kind": "TIMES",
+            "syntax": "BINARY"
+          },
+          "operands": [
+            {
+              "input": 5,
+              "name": "$5"
+            },
+            {
+              "op": {
+                "name": "-",
+                "kind": "MINUS",
+                "syntax": "BINARY"
+              },
+              "operands": [
+                {
+                  "literal": 1.0,
+                  "type": {
+                    "type": "DECIMAL",
+                    "nullable": false,
+                    "precision": 2,
+                    "scale": 1
+                  }
+                },
+                {
+                  "input": 6,
+                  "name": "$6"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableAggregate",
+      "group": [],
+      "aggs": [
+        {
+          "agg": {
+            "name": "SUM",
+            "kind": "SUM",
+            "syntax": "FUNCTION"
+          },
+          "type": {
+            "type": "DOUBLE",
+            "nullable": true
+          },
+          "distinct": false,
+          "operands": [
+            0
+          ],
+          "name": null
+        },
+        {
+          "agg": {
+            "name": "SUM",
+            "kind": "SUM",
+            "syntax": "FUNCTION"
+          },
+          "type": {
+            "type": "DOUBLE",
+            "nullable": true
+          },
+          "distinct": false,
+          "operands": [
+            1
+          ],
+          "name": null
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableProject",
+      "fields": [
+        "PROMO_REVENUE"
+      ],
+      "exprs": [
+        {
+          "op": {
+            "name": "/",
+            "kind": "DIVIDE",
+            "syntax": "BINARY"
+          },
+          "operands": [
+            {
+              "op": {
+                "name": "*",
+                "kind": "TIMES",
+                "syntax": "BINARY"
+              },
+              "operands": [
+                {
+                  "literal": 100.00,
+                  "type": {
+                    "type": "DECIMAL",
+                    "nullable": false,
+                    "precision": 5,
+                    "scale": 2
+                  }
+                },
+                {
+                  "input": 0,
+                  "name": "$0"
+                }
+              ]
+            },
+            {
+              "input": 1,
+              "name": "$1"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
