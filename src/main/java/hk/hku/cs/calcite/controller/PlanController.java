@@ -6,6 +6,7 @@ import hk.hku.cs.calcite.service.PlanService;
 import hk.hku.cs.calcite.util.CommandUtil;
 import hk.hku.cs.calcite.util.TpchUtil;
 import org.apache.calcite.sql.parser.SqlParseException;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,9 @@ public class PlanController {
     @Value("${calcite.path.sql}")
     private String sqlPath;
 
+    @Value("${prefix.path}")
+    private String prefix;
+
 
     @Autowired
     public PlanController(PlanService planService) {
@@ -54,11 +58,12 @@ public class PlanController {
     }
 
     @GetMapping("/plan/file")
-    public Plan queryWithFile(@RequestParam(value = "filename", defaultValue = "") String filename) {
+    public String queryWithFile(@RequestParam(value = "filename", defaultValue = "") String filename) {
 
         logger.info("Input:\n" + filename);
         String filePath = sqlPath + filename;
         String outputPath = (jsonPath + filename).replace("sql", "json");
+        outputPath = prefix + outputPath;
 
         String sql = null;
         try {
@@ -80,21 +85,24 @@ public class PlanController {
         Date date = new Date(); // 获取当前时间
         logger.info(sdf.format(date));
 
-        Gson gson = new Gson();
-        String json1 = gson.toJson(plan);
-        String json2 = gson.toJson(plan.getPhysicalPlan());
+//        String json = gson.toJson(plan);
+        String json = plan.getJsonPlan();
 
         try {
-            TpchUtil.stringToFile(outputPath, json1 + json2);
+            TpchUtil.stringToFile(outputPath, json);
         } catch (IOException e) {
             logger.error(e.getMessage());
         }
 
-        String[] array1 = {"cat", "plan.json"};
-        String[] array2 = {"stat", "plan.json"};
-        String res1 = CommandUtil.callCMD(array1);
-        String res2 = CommandUtil.callCMD(array2);
+//        String[] array1 = {"cat", outputPath};
+//        String[] array2 = {"stat", outputPath};
+//        String res1 = CommandUtil.callCMD(array1);
+//        String res2 = CommandUtil.callCMD(array2);
 
-        return plan;
+        String[] array3 = {"/Users/apple/velox/cmake-build-release/velox/exec/tests/velox_in_10_min_demo",
+                outputPath};
+        String res = CommandUtil.callCMD(array3);
+
+        return res;
     }
 }
