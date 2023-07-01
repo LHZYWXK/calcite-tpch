@@ -1,12 +1,11 @@
 package hk.hku.cs.calcite.controller;
 
-import com.google.gson.Gson;
 import hk.hku.cs.calcite.entity.Plan;
 import hk.hku.cs.calcite.service.PlanService;
 import hk.hku.cs.calcite.util.CommandUtil;
+import hk.hku.cs.calcite.util.StringUtil;
 import hk.hku.cs.calcite.util.TpchUtil;
 import org.apache.calcite.sql.parser.SqlParseException;
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @RestController
@@ -58,7 +57,7 @@ public class PlanController {
     }
 
     @GetMapping("/plan/file")
-    public String queryWithFile(@RequestParam(value = "filename", defaultValue = "") String filename) {
+    public List<Map<Integer, String>> queryWithFile(@RequestParam(value = "filename", defaultValue = "") String filename) {
 
         logger.info("Input:\n" + filename);
         String filePath = sqlPath + filename;
@@ -99,10 +98,18 @@ public class PlanController {
 //        String res1 = CommandUtil.callCMD(array1);
 //        String res2 = CommandUtil.callCMD(array2);
 
-        String[] array3 = {"/Users/apple/velox/cmake-build-release/velox/exec/tests/velox_in_10_min_demo",
+//        String[] array3 = {"/Users/apple/velox/cmake-build-release/velox/exec/tests/velox_in_10_min_demo",
+//                outputPath};
+        String[] array3 = {"/Users/Yuqilin/Desktop/project/executed_file/velox_in_10_min_demo",
                 outputPath};
         String res = CommandUtil.callCMD(array3);
+        logger.info("velox return string: " + res);
 
-        return res;
+        List<Map<Integer, String>> data = new ArrayList<>();
+        Map<Integer, String> header = StringUtil.extractHeader(res);
+        List<Map<Integer, String>> rowData = StringUtil.extractData(res);
+        data.add(header);
+        data.addAll(rowData);
+        return data;
     }
 }

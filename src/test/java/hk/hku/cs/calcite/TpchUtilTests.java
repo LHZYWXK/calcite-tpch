@@ -1,6 +1,6 @@
 package hk.hku.cs.calcite;
 
-import hk.hku.cs.util.TpchUtil;
+import hk.hku.cs.calcite.util.TpchUtil;
 import org.junit.jupiter.api.Test;
 
 public class TpchUtilTests {

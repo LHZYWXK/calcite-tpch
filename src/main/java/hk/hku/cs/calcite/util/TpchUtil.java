@@ -63,6 +63,14 @@ public class TpchUtil {
 
     public static void stringToFile(final String filename, final String content) throws IOException {
         File fileText = new File(filename);
+        if(!fileText.exists())
+        {
+            try {
+                fileText.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         FileWriter fileWriter = new FileWriter(fileText);
         fileWriter.write(content);
         fileWriter.close();

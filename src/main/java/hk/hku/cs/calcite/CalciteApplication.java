@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-//@EnableSwagger2
 public class CalciteApplication {
 
     public static void main(String[] args) {
