@@ -1,0 +1,7 @@
+digraph {
+"EnumerableProject\nL_RETURNFLAG = $0\nL_LINESTATUS = $1\nSUM_QTY = $2\nSUM_BASE_PRICE = $3\nSUM_DISC_PRICE = $4\n..." -> "EnumerableSort\nsort0 = $0\nsort1 = $1\ndir0 = ASC\ndir1 = ASC\n" [label="0"]
+"EnumerableSortedAggr\negate\ngroup = {0, 1}\nSUM_QTY = SUM($2)\nSUM_BASE_PRICE = SUM\n($3)\nSUM_DISC_PRICE = SUM\n($4)\n..." -> "EnumerableProject\nL_RETURNFLAG = $0\nL_LINESTATUS = $1\nSUM_QTY = $2\nSUM_BASE_PRICE = $3\nSUM_DISC_PRICE = $4\n..." [label="0"]
+"EnumerableProject\nl_returnflag = $8\nl_linestatus = $9\nl_quantity = $4\nl_extendedprice = $5\n$f4 = *($5, -(1, $6)\n)\n..." -> "EnumerableSortedAggr\negate\ngroup = {0, 1}\nSUM_QTY = SUM($2)\nSUM_BASE_PRICE = SUM\n($3)\nSUM_DISC_PRICE = SUM\n($4)\n..." [label="0"]
+"EnumerableFilter\ncondition = <=($10, \n-(1998-12-01, 777600\n0000:INTERVAL DAY))\n" -> "EnumerableProject\nl_returnflag = $8\nl_linestatus = $9\nl_quantity = $4\nl_extendedprice = $5\n$f4 = *($5, -(1, $6)\n)\n..." [label="0"]
+"EnumerableTableScan\ntable = [LINEITEM]\n" -> "EnumerableFilter\ncondition = <=($10, \n-(1998-12-01, 777600\n0000:INTERVAL DAY))\n" [label="0"]
+}

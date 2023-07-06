@@ -4,8 +4,6 @@ target/
 !**/src/test/**/target/
 
 logs/
-data/json/**
-data/queries/**
 
 ### STS ###
 .apt_generated

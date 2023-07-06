@@ -8,6 +8,8 @@ public class Plan {
     private String logicalPlan;
     private String physicalPlan;
     private String jsonPlan;
+    private String xmlPlan;
+    private String dotPlan;
 
     public Plan(int id, String sql) {
         this.id = id;
@@ -68,5 +70,21 @@ public class Plan {
 
     public void setJsonPlan(String jsonPlan) {
         this.jsonPlan = jsonPlan;
+    }
+
+    public String getXmlPlan() {
+        return xmlPlan;
+    }
+
+    public void setXmlPlan(String xmlPlan) {
+        this.xmlPlan = xmlPlan;
+    }
+
+    public String getDotPlan() {
+        return dotPlan;
+    }
+
+    public void setDotPlan(String dotPlan) {
+        this.dotPlan = dotPlan;
     }
 }

@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PlanService {
-    public Plan getPlan(Plan plan) throws SqlParseException {
+    public void getPlan(Plan plan) throws SqlParseException {
         CalciteSchema rootSchema = CalciteSchema.createRootSchema(false);
         RelDataTypeFactory typeFactory = new JavaTypeFactoryImpl();
 
@@ -56,6 +56,17 @@ public class PlanService {
                 SqlExplainFormat.JSON,
                 SqlExplainLevel.EXPPLAN_ATTRIBUTES
         )));
-        return plan;
+        plan.setXmlPlan(RelOptUtil.dumpPlan(
+                "",
+                physicalPlan,
+                SqlExplainFormat.XML,
+                SqlExplainLevel.EXPPLAN_ATTRIBUTES
+        ));
+        plan.setDotPlan(RelOptUtil.dumpPlan(
+                "",
+                physicalPlan,
+                SqlExplainFormat.DOT,
+                SqlExplainLevel.EXPPLAN_ATTRIBUTES
+        ));
     }
 }

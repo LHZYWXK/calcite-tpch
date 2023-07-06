@@ -1,0 +1,560 @@
+{
+  "rels": [
+    {
+      "id": "0",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableTableScan",
+      "table": [
+        "PART"
+      ],
+      "inputs": []
+    },
+    {
+      "id": "1",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableFilter",
+      "condition": {
+        "op": {
+          "name": "AND",
+          "kind": "AND",
+          "syntax": "BINARY"
+        },
+        "operands": [
+          {
+            "op": {
+              "name": "=",
+              "kind": "EQUALS",
+              "syntax": "BINARY"
+            },
+            "operands": [
+              {
+                "input": 5,
+                "name": "$5"
+              },
+              {
+                "literal": 15,
+                "type": {
+                  "type": "INTEGER",
+                  "nullable": false
+                }
+              }
+            ]
+          },
+          {
+            "op": {
+              "name": "LIKE",
+              "kind": "LIKE",
+              "syntax": "SPECIAL"
+            },
+            "operands": [
+              {
+                "input": 4,
+                "name": "$4"
+              },
+              {
+                "literal": "BRASS",
+                "type": {
+                  "type": "CHAR",
+                  "nullable": false,
+                  "precision": 5
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "2",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableTableScan",
+      "table": [
+        "PARTSUPP"
+      ],
+      "inputs": []
+    },
+    {
+      "id": "3",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableFilter",
+      "condition": {
+        "op": {
+          "name": "=",
+          "kind": "EQUALS",
+          "syntax": "BINARY"
+        },
+        "operands": [
+          {
+            "input": 3,
+            "name": "$3"
+          },
+          {
+            "op": {
+              "name": "$SCALAR_QUERY",
+              "kind": "SCALAR_QUERY",
+              "syntax": "INTERNAL"
+            },
+            "operands": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "4",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableHashJoin",
+      "condition": {
+        "op": {
+          "name": "=",
+          "kind": "EQUALS",
+          "syntax": "BINARY"
+        },
+        "operands": [
+          {
+            "input": 0,
+            "name": "$0"
+          },
+          {
+            "input": 9,
+            "name": "$9"
+          }
+        ]
+      },
+      "joinType": "inner",
+      "inputs": [
+        "1",
+        "3"
+      ]
+    },
+    {
+      "id": "5",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableProject",
+      "fields": [
+        "ps_partkey",
+        "ps_suppkey",
+        "ps_availqty",
+        "ps_supplycost",
+        "ps_comment",
+        "p_partkey",
+        "p_name",
+        "p_mfgr",
+        "p_brand",
+        "p_type",
+        "p_size",
+        "p_container",
+        "p_retailprice",
+        "p_comment"
+      ],
+      "exprs": [
+        {
+          "input": 9,
+          "name": "$9"
+        },
+        {
+          "input": 10,
+          "name": "$10"
+        },
+        {
+          "input": 11,
+          "name": "$11"
+        },
+        {
+          "input": 12,
+          "name": "$12"
+        },
+        {
+          "input": 13,
+          "name": "$13"
+        },
+        {
+          "input": 0,
+          "name": "$0"
+        },
+        {
+          "input": 1,
+          "name": "$1"
+        },
+        {
+          "input": 2,
+          "name": "$2"
+        },
+        {
+          "input": 3,
+          "name": "$3"
+        },
+        {
+          "input": 4,
+          "name": "$4"
+        },
+        {
+          "input": 5,
+          "name": "$5"
+        },
+        {
+          "input": 6,
+          "name": "$6"
+        },
+        {
+          "input": 7,
+          "name": "$7"
+        },
+        {
+          "input": 8,
+          "name": "$8"
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableTableScan",
+      "table": [
+        "SUPPLIER"
+      ],
+      "inputs": []
+    },
+    {
+      "id": "7",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableHashJoin",
+      "condition": {
+        "op": {
+          "name": "=",
+          "kind": "EQUALS",
+          "syntax": "BINARY"
+        },
+        "operands": [
+          {
+            "input": 1,
+            "name": "$1"
+          },
+          {
+            "input": 14,
+            "name": "$14"
+          }
+        ]
+      },
+      "joinType": "inner",
+      "inputs": [
+        "5",
+        "6"
+      ]
+    },
+    {
+      "id": "8",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableProject",
+      "fields": [
+        "p_partkey",
+        "p_name",
+        "p_mfgr",
+        "p_brand",
+        "p_type",
+        "p_size",
+        "p_container",
+        "p_retailprice",
+        "p_comment",
+        "s_suppkey",
+        "s_name",
+        "s_address",
+        "s_nationkey",
+        "s_phone",
+        "s_acctbal",
+        "s_comment",
+        "ps_partkey",
+        "ps_suppkey",
+        "ps_availqty",
+        "ps_supplycost",
+        "ps_comment"
+      ],
+      "exprs": [
+        {
+          "input": 5,
+          "name": "$5"
+        },
+        {
+          "input": 6,
+          "name": "$6"
+        },
+        {
+          "input": 7,
+          "name": "$7"
+        },
+        {
+          "input": 8,
+          "name": "$8"
+        },
+        {
+          "input": 9,
+          "name": "$9"
+        },
+        {
+          "input": 10,
+          "name": "$10"
+        },
+        {
+          "input": 11,
+          "name": "$11"
+        },
+        {
+          "input": 12,
+          "name": "$12"
+        },
+        {
+          "input": 13,
+          "name": "$13"
+        },
+        {
+          "input": 14,
+          "name": "$14"
+        },
+        {
+          "input": 15,
+          "name": "$15"
+        },
+        {
+          "input": 16,
+          "name": "$16"
+        },
+        {
+          "input": 17,
+          "name": "$17"
+        },
+        {
+          "input": 18,
+          "name": "$18"
+        },
+        {
+          "input": 19,
+          "name": "$19"
+        },
+        {
+          "input": 20,
+          "name": "$20"
+        },
+        {
+          "input": 0,
+          "name": "$0"
+        },
+        {
+          "input": 1,
+          "name": "$1"
+        },
+        {
+          "input": 2,
+          "name": "$2"
+        },
+        {
+          "input": 3,
+          "name": "$3"
+        },
+        {
+          "input": 4,
+          "name": "$4"
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableTableScan",
+      "table": [
+        "REGION"
+      ],
+      "inputs": []
+    },
+    {
+      "id": "10",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableFilter",
+      "condition": {
+        "op": {
+          "name": "=",
+          "kind": "EQUALS",
+          "syntax": "BINARY"
+        },
+        "operands": [
+          {
+            "input": 1,
+            "name": "$1"
+          },
+          {
+            "literal": "EUROPE",
+            "type": {
+              "type": "VARCHAR",
+              "nullable": false,
+              "precision": -1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "11",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableTableScan",
+      "table": [
+        "NATION"
+      ],
+      "inputs": []
+    },
+    {
+      "id": "12",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableHashJoin",
+      "condition": {
+        "op": {
+          "name": "=",
+          "kind": "EQUALS",
+          "syntax": "BINARY"
+        },
+        "operands": [
+          {
+            "input": 0,
+            "name": "$0"
+          },
+          {
+            "input": 5,
+            "name": "$5"
+          }
+        ]
+      },
+      "joinType": "inner",
+      "inputs": [
+        "10",
+        "11"
+      ]
+    },
+    {
+      "id": "13",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableProject",
+      "fields": [
+        "n_nationkey",
+        "n_name",
+        "n_regionkey",
+        "n_comment",
+        "r_regionkey",
+        "r_name",
+        "r_comment"
+      ],
+      "exprs": [
+        {
+          "input": 3,
+          "name": "$3"
+        },
+        {
+          "input": 4,
+          "name": "$4"
+        },
+        {
+          "input": 5,
+          "name": "$5"
+        },
+        {
+          "input": 6,
+          "name": "$6"
+        },
+        {
+          "input": 0,
+          "name": "$0"
+        },
+        {
+          "input": 1,
+          "name": "$1"
+        },
+        {
+          "input": 2,
+          "name": "$2"
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableHashJoin",
+      "condition": {
+        "op": {
+          "name": "=",
+          "kind": "EQUALS",
+          "syntax": "BINARY"
+        },
+        "operands": [
+          {
+            "input": 12,
+            "name": "$12"
+          },
+          {
+            "input": 21,
+            "name": "$21"
+          }
+        ]
+      },
+      "joinType": "inner",
+      "inputs": [
+        "8",
+        "13"
+      ]
+    },
+    {
+      "id": "15",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableProject",
+      "fields": [
+        "S_ACCTBAL",
+        "S_NAME",
+        "N_NAME",
+        "P_PARTKEY",
+        "P_MFGR",
+        "S_ADDRESS",
+        "S_PHONE",
+        "S_COMMENT"
+      ],
+      "exprs": [
+        {
+          "input": 14,
+          "name": "$14"
+        },
+        {
+          "input": 10,
+          "name": "$10"
+        },
+        {
+          "input": 22,
+          "name": "$22"
+        },
+        {
+          "input": 0,
+          "name": "$0"
+        },
+        {
+          "input": 2,
+          "name": "$2"
+        },
+        {
+          "input": 11,
+          "name": "$11"
+        },
+        {
+          "input": 13,
+          "name": "$13"
+        },
+        {
+          "input": 15,
+          "name": "$15"
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableSort",
+      "collation": [
+        {
+          "field": 0,
+          "direction": "DESCENDING",
+          "nulls": "FIRST"
+        },
+        {
+          "field": 2,
+          "direction": "ASCENDING",
+          "nulls": "LAST"
+        },
+        {
+          "field": 1,
+          "direction": "ASCENDING",
+          "nulls": "LAST"
+        },
+        {
+          "field": 3,
+          "direction": "ASCENDING",
+          "nulls": "LAST"
+        }
+      ]
+    }
+  ]
+}

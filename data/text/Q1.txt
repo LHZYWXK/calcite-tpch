@@ -1,0 +1,6 @@
+EnumerableSort(sort0=[$0], sort1=[$1], dir0=[ASC], dir1=[ASC])
+  EnumerableProject(L_RETURNFLAG=[$0], L_LINESTATUS=[$1], SUM_QTY=[$2], SUM_BASE_PRICE=[$3], SUM_DISC_PRICE=[$4], SUM_CHARGE=[$5], AVG_QTY=[$6], AVG_PRICE=[$7], AVG_DISC=[$8], COUNT_ORDER=[$9])
+    EnumerableSortedAggregate(group=[{0, 1}], SUM_QTY=[SUM($2)], SUM_BASE_PRICE=[SUM($3)], SUM_DISC_PRICE=[SUM($4)], SUM_CHARGE=[SUM($5)], AVG_QTY=[AVG($2)], AVG_PRICE=[AVG($3)], AVG_DISC=[AVG($6)], COUNT_ORDER=[COUNT()])
+      EnumerableProject(l_returnflag=[$8], l_linestatus=[$9], l_quantity=[$4], l_extendedprice=[$5], $f4=[*($5, -(1, $6))], $f5=[*(*($5, -(1, $6)), +(1, $7))], l_discount=[$6])
+        EnumerableFilter(condition=[<=($10, -(1998-12-01, 7776000000:INTERVAL DAY))])
+          EnumerableTableScan(table=[[LINEITEM]])

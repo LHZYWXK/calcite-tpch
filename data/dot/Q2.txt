@@ -1,0 +1,22 @@
+digraph {
+"EnumerableProject\nS_ACCTBAL = $14\nS_NAME = $10\nN_NAME = $22\nP_PARTKEY = $0\nP_MFGR = $2\nS_ADDRESS = $11\nS_PHONE = $13\n..." -> "EnumerableSort\nsort0 = $0\nsort1 = $2\nsort2 = $1\nsort3 = $3\ndir0 = DESC\ndir1 = ASC\ndir2 = ASC\ndir3 = ASC\n" [label="0"]
+"EnumerableHashJoin\ncondition = =($12, $\n21)\njoinType = inner\n" -> "EnumerableProject\nS_ACCTBAL = $14\nS_NAME = $10\nN_NAME = $22\nP_PARTKEY = $0\nP_MFGR = $2\nS_ADDRESS = $11\nS_PHONE = $13\n..." [label="0"]
+"EnumerableProject\np_partkey = $5\np_name = $6\np_mfgr = $7\np_brand = $8\np_type = $9\np_size = $10\np_container = $11\n..." -> "EnumerableHashJoin\ncondition = =($12, $\n21)\njoinType = inner\n" [label="0"]
+"EnumerableProject\nn_nationkey = $3\nn_name = $4\nn_regionkey = $5\nn_comment = $6\nr_regionkey = $0\nr_name = $1\n..." -> "EnumerableHashJoin\ncondition = =($12, $\n21)\njoinType = inner\n" [label="1"]
+"EnumerableHashJoin\ncondition = =($1, $1\n4)\njoinType = inner\n" -> "EnumerableProject\np_partkey = $5\np_name = $6\np_mfgr = $7\np_brand = $8\np_type = $9\np_size = $10\np_container = $11\n..." [label="0"]
+"EnumerableProject\nps_partkey = $9\nps_suppkey = $10\nps_availqty = $11\nps_supplycost = $12\nps_comment = $13\n..." -> "EnumerableHashJoin\ncondition = =($1, $1\n4)\njoinType = inner\n" [label="0"]
+"EnumerableTableScan\ntable = [SUPPLIER]\n" -> "EnumerableHashJoin\ncondition = =($1, $1\n4)\njoinType = inner\n" [label="1"]
+"EnumerableHashJoin\ncondition = =($0, $9\n)\njoinType = inner\n" -> "EnumerableProject\nps_partkey = $9\nps_suppkey = $10\nps_availqty = $11\nps_supplycost = $12\nps_comment = $13\n..." [label="0"]
+"EnumerableFilter\ncondition = AND(=($5\n, 15), LIKE($4, 'BRA\nSS'))\n" -> "EnumerableHashJoin\ncondition = =($0, $9\n)\njoinType = inner\n" [label="0"]
+"EnumerableFilter\ncondition = =($3, $S\nCALAR_QUERY({
+Logica\nlAggregate(group=[{}\n], EXPR$0=[MIN($0)])\n
+  LogicalProject(ps..." -> "EnumerableHashJoin\ncondition = =($0, $9\n)\njoinType = inner\n" [label="1"]
+"EnumerableTableScan\ntable = [PART]\n" -> "EnumerableFilter\ncondition = AND(=($5\n, 15), LIKE($4, 'BRA\nSS'))\n" [label="0"]
+"EnumerableTableScan\ntable = [PARTSUPP]\n" -> "EnumerableFilter\ncondition = =($3, $S\nCALAR_QUERY({
+Logica\nlAggregate(group=[{}\n], EXPR$0=[MIN($0)])\n
+  LogicalProject(ps..." [label="0"]
+"EnumerableHashJoin\ncondition = =($0, $5\n)\njoinType = inner\n" -> "EnumerableProject\nn_nationkey = $3\nn_name = $4\nn_regionkey = $5\nn_comment = $6\nr_regionkey = $0\nr_name = $1\n..." [label="0"]
+"EnumerableFilter\ncondition = =($1, 'E\nUROPE')\n" -> "EnumerableHashJoin\ncondition = =($0, $5\n)\njoinType = inner\n" [label="0"]
+"EnumerableTableScan\ntable = [NATION]\n" -> "EnumerableHashJoin\ncondition = =($0, $5\n)\njoinType = inner\n" [label="1"]
+"EnumerableTableScan\ntable = [REGION]\n" -> "EnumerableFilter\ncondition = =($1, 'E\nUROPE')\n" [label="0"]
+}

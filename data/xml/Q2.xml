@@ -1,0 +1,285 @@
+<RelNode type="EnumerableSort">
+	<Property name="sort0">
+		$0
+	</Property>
+	<Property name="sort1">
+		$2
+	</Property>
+	<Property name="sort2">
+		$1
+	</Property>
+	<Property name="sort3">
+		$3
+	</Property>
+	<Property name="dir0">
+		DESC
+	</Property>
+	<Property name="dir1">
+		ASC
+	</Property>
+	<Property name="dir2">
+		ASC
+	</Property>
+	<Property name="dir3">
+		ASC
+	</Property>
+	<Inputs>
+		<RelNode type="EnumerableProject">
+			<Property name="S_ACCTBAL">
+				$14
+			</Property>
+			<Property name="S_NAME">
+				$10
+			</Property>
+			<Property name="N_NAME">
+				$22
+			</Property>
+			<Property name="P_PARTKEY">
+				$0
+			</Property>
+			<Property name="P_MFGR">
+				$2
+			</Property>
+			<Property name="S_ADDRESS">
+				$11
+			</Property>
+			<Property name="S_PHONE">
+				$13
+			</Property>
+			<Property name="S_COMMENT">
+				$15
+			</Property>
+			<Inputs>
+				<RelNode type="EnumerableHashJoin">
+					<Property name="condition">
+						=($12, $21)
+					</Property>
+					<Property name="joinType">
+						inner
+					</Property>
+					<Inputs>
+						<RelNode type="EnumerableProject">
+							<Property name="p_partkey">
+								$5
+							</Property>
+							<Property name="p_name">
+								$6
+							</Property>
+							<Property name="p_mfgr">
+								$7
+							</Property>
+							<Property name="p_brand">
+								$8
+							</Property>
+							<Property name="p_type">
+								$9
+							</Property>
+							<Property name="p_size">
+								$10
+							</Property>
+							<Property name="p_container">
+								$11
+							</Property>
+							<Property name="p_retailprice">
+								$12
+							</Property>
+							<Property name="p_comment">
+								$13
+							</Property>
+							<Property name="s_suppkey">
+								$14
+							</Property>
+							<Property name="s_name">
+								$15
+							</Property>
+							<Property name="s_address">
+								$16
+							</Property>
+							<Property name="s_nationkey">
+								$17
+							</Property>
+							<Property name="s_phone">
+								$18
+							</Property>
+							<Property name="s_acctbal">
+								$19
+							</Property>
+							<Property name="s_comment">
+								$20
+							</Property>
+							<Property name="ps_partkey">
+								$0
+							</Property>
+							<Property name="ps_suppkey">
+								$1
+							</Property>
+							<Property name="ps_availqty">
+								$2
+							</Property>
+							<Property name="ps_supplycost">
+								$3
+							</Property>
+							<Property name="ps_comment">
+								$4
+							</Property>
+							<Inputs>
+								<RelNode type="EnumerableHashJoin">
+									<Property name="condition">
+										=($1, $14)
+									</Property>
+									<Property name="joinType">
+										inner
+									</Property>
+									<Inputs>
+										<RelNode type="EnumerableProject">
+											<Property name="ps_partkey">
+												$9
+											</Property>
+											<Property name="ps_suppkey">
+												$10
+											</Property>
+											<Property name="ps_availqty">
+												$11
+											</Property>
+											<Property name="ps_supplycost">
+												$12
+											</Property>
+											<Property name="ps_comment">
+												$13
+											</Property>
+											<Property name="p_partkey">
+												$0
+											</Property>
+											<Property name="p_name">
+												$1
+											</Property>
+											<Property name="p_mfgr">
+												$2
+											</Property>
+											<Property name="p_brand">
+												$3
+											</Property>
+											<Property name="p_type">
+												$4
+											</Property>
+											<Property name="p_size">
+												$5
+											</Property>
+											<Property name="p_container">
+												$6
+											</Property>
+											<Property name="p_retailprice">
+												$7
+											</Property>
+											<Property name="p_comment">
+												$8
+											</Property>
+											<Inputs>
+												<RelNode type="EnumerableHashJoin">
+													<Property name="condition">
+														=($0, $9)
+													</Property>
+													<Property name="joinType">
+														inner
+													</Property>
+													<Inputs>
+														<RelNode type="EnumerableFilter">
+															<Property name="condition">
+																AND(=($5, 15), LIKE($4, &#39;BRASS&#39;))
+															</Property>
+															<Inputs>
+																<RelNode type="EnumerableTableScan">
+																	<Property name="table">
+																		[PART]
+																	</Property>
+																	<Inputs/>
+																</RelNode>
+															</Inputs>
+														</RelNode>
+														<RelNode type="EnumerableFilter">
+															<Property name="condition">
+																=($3, $SCALAR_QUERY({&#10;LogicalAggregate(group=[{}], EXPR$0=[MIN($0)])&#10;  LogicalProject(ps_supplycost=[$3])&#10;    LogicalFilter(condition=[AND(=($cor0.p_partkey, $0), =($5, $1), =($8, $12), =($14, $16), =($17, &#39;EUROPE&#39;))])&#10;      LogicalJoin(condition=[true], joinType=[inner])&#10;        LogicalJoin(condition=[true], joinType=[inner])&#10;          LogicalJoin(condition=[true], joinType=[inner])&#10;            LogicalTableScan(table=[[PARTSUPP]])&#10;            LogicalTableScan(table=[[SUPPLIER]])&#10;          LogicalTableScan(table=[[NATION]])&#10;        LogicalTableScan(table=[[REGION]])&#10;}))
+															</Property>
+															<Inputs>
+																<RelNode type="EnumerableTableScan">
+																	<Property name="table">
+																		[PARTSUPP]
+																	</Property>
+																	<Inputs/>
+																</RelNode>
+															</Inputs>
+														</RelNode>
+													</Inputs>
+												</RelNode>
+											</Inputs>
+										</RelNode>
+										<RelNode type="EnumerableTableScan">
+											<Property name="table">
+												[SUPPLIER]
+											</Property>
+											<Inputs/>
+										</RelNode>
+									</Inputs>
+								</RelNode>
+							</Inputs>
+						</RelNode>
+						<RelNode type="EnumerableProject">
+							<Property name="n_nationkey">
+								$3
+							</Property>
+							<Property name="n_name">
+								$4
+							</Property>
+							<Property name="n_regionkey">
+								$5
+							</Property>
+							<Property name="n_comment">
+								$6
+							</Property>
+							<Property name="r_regionkey">
+								$0
+							</Property>
+							<Property name="r_name">
+								$1
+							</Property>
+							<Property name="r_comment">
+								$2
+							</Property>
+							<Inputs>
+								<RelNode type="EnumerableHashJoin">
+									<Property name="condition">
+										=($0, $5)
+									</Property>
+									<Property name="joinType">
+										inner
+									</Property>
+									<Inputs>
+										<RelNode type="EnumerableFilter">
+											<Property name="condition">
+												=($1, &#39;EUROPE&#39;)
+											</Property>
+											<Inputs>
+												<RelNode type="EnumerableTableScan">
+													<Property name="table">
+														[REGION]
+													</Property>
+													<Inputs/>
+												</RelNode>
+											</Inputs>
+										</RelNode>
+										<RelNode type="EnumerableTableScan">
+											<Property name="table">
+												[NATION]
+											</Property>
+											<Inputs/>
+										</RelNode>
+									</Inputs>
+								</RelNode>
+							</Inputs>
+						</RelNode>
+					</Inputs>
+				</RelNode>
+			</Inputs>
+		</RelNode>
+	</Inputs>
+</RelNode>

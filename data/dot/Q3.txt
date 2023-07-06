@@ -1,0 +1,13 @@
+digraph {
+"EnumerableProject\nL_ORDERKEY = $0\nREVENUE = $3\nO_ORDERDATE = $1\nO_SHIPPRIORITY = $2\n" -> "EnumerableSort\nsort0 = $1\nsort1 = $2\ndir0 = DESC\ndir1 = ASC\n" [label="0"]
+"EnumerableAggregate\ngroup = {0, 1, 2}\nREVENUE = SUM($3)\n" -> "EnumerableProject\nL_ORDERKEY = $0\nREVENUE = $3\nO_ORDERDATE = $1\nO_SHIPPRIORITY = $2\n" [label="0"]
+"EnumerableProject\nl_orderkey = $17\no_orderdate = $12\no_shippriority = $15\n$f3 = *($22, -(1, $2\n3))\n" -> "EnumerableAggregate\ngroup = {0, 1, 2}\nREVENUE = SUM($3)\n" [label="0"]
+"EnumerableHashJoin\ncondition = =($8, $1\n7)\njoinType = inner\n" -> "EnumerableProject\nl_orderkey = $17\no_orderdate = $12\no_shippriority = $15\n$f3 = *($22, -(1, $2\n3))\n" [label="0"]
+"EnumerableHashJoin\ncondition = =($0, $9\n)\njoinType = inner\n" -> "EnumerableHashJoin\ncondition = =($8, $1\n7)\njoinType = inner\n" [label="0"]
+"EnumerableFilter\ncondition = >($10, 1\n995-03-15)\n" -> "EnumerableHashJoin\ncondition = =($8, $1\n7)\njoinType = inner\n" [label="1"]
+"EnumerableFilter\ncondition = =($6, 'B\nUILDING')\n" -> "EnumerableHashJoin\ncondition = =($0, $9\n)\njoinType = inner\n" [label="0"]
+"EnumerableFilter\ncondition = <($4, 19\n95-03-15)\n" -> "EnumerableHashJoin\ncondition = =($0, $9\n)\njoinType = inner\n" [label="1"]
+"EnumerableTableScan\ntable = [CUSTOMER]\n" -> "EnumerableFilter\ncondition = =($6, 'B\nUILDING')\n" [label="0"]
+"EnumerableTableScan\ntable = [ORDERS]\n" -> "EnumerableFilter\ncondition = <($4, 19\n95-03-15)\n" [label="0"]
+"EnumerableTableScan\ntable = [LINEITEM]\n" -> "EnumerableFilter\ncondition = >($10, 1\n995-03-15)\n" [label="0"]
+}

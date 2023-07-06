@@ -1,0 +1,119 @@
+<RelNode type="EnumerableSort">
+    <Property name="sort0">
+        $0
+    </Property>
+    <Property name="sort1">
+        $1
+    </Property>
+    <Property name="dir0">
+        ASC
+    </Property>
+    <Property name="dir1">
+        ASC
+    </Property>
+    <Inputs>
+        <RelNode type="EnumerableProject">
+            <Property name="L_RETURNFLAG">
+                $0
+            </Property>
+            <Property name="L_LINESTATUS">
+                $1
+            </Property>
+            <Property name="SUM_QTY">
+                $2
+            </Property>
+            <Property name="SUM_BASE_PRICE">
+                $3
+            </Property>
+            <Property name="SUM_DISC_PRICE">
+                $4
+            </Property>
+            <Property name="SUM_CHARGE">
+                $5
+            </Property>
+            <Property name="AVG_QTY">
+                $6
+            </Property>
+            <Property name="AVG_PRICE">
+                $7
+            </Property>
+            <Property name="AVG_DISC">
+                $8
+            </Property>
+            <Property name="COUNT_ORDER">
+                $9
+            </Property>
+            <Inputs>
+                <RelNode type="EnumerableSortedAggregate">
+                    <Property name="group">
+                        {0, 1}
+                    </Property>
+                    <Property name="SUM_QTY">
+                        SUM($2)
+                    </Property>
+                    <Property name="SUM_BASE_PRICE">
+                        SUM($3)
+                    </Property>
+                    <Property name="SUM_DISC_PRICE">
+                        SUM($4)
+                    </Property>
+                    <Property name="SUM_CHARGE">
+                        SUM($5)
+                    </Property>
+                    <Property name="AVG_QTY">
+                        AVG($2)
+                    </Property>
+                    <Property name="AVG_PRICE">
+                        AVG($3)
+                    </Property>
+                    <Property name="AVG_DISC">
+                        AVG($6)
+                    </Property>
+                    <Property name="COUNT_ORDER">
+                        COUNT()
+                    </Property>
+                    <Inputs>
+                        <RelNode type="EnumerableProject">
+                            <Property name="l_returnflag">
+                                $8
+                            </Property>
+                            <Property name="l_linestatus">
+                                $9
+                            </Property>
+                            <Property name="l_quantity">
+                                $4
+                            </Property>
+                            <Property name="l_extendedprice">
+                                $5
+                            </Property>
+                            <Property name="$f4">
+                                *($5, -(1, $6))
+                            </Property>
+                            <Property name="$f5">
+                                *(*($5, -(1, $6)), +(1, $7))
+                            </Property>
+                            <Property name="l_discount">
+                                $6
+                            </Property>
+                            <Inputs>
+                                <RelNode type="EnumerableFilter">
+                                    <Property name="condition">
+                                        &#60;=($10, -(1998-12-01, 7776000000:INTERVAL DAY))
+                                    </Property>
+                                    <Inputs>
+                                        <RelNode type="EnumerableTableScan">
+                                            <Property name="table">
+                                                [LINEITEM]
+                                            </Property>
+                                            <Inputs/>
+                                        </RelNode>
+                                    </Inputs>
+                                </RelNode>
+                            </Inputs>
+                        </RelNode>
+                    </Inputs>
+                </RelNode>
+            </Inputs>
+        </RelNode>
+    </Inputs>
+</RelNode>

@@ -1,0 +1,117 @@
+<RelNode type="EnumerableSort">
+	<Property name="sort0">
+		$1
+	</Property>
+	<Property name="sort1">
+		$2
+	</Property>
+	<Property name="dir0">
+		DESC
+	</Property>
+	<Property name="dir1">
+		ASC
+	</Property>
+	<Inputs>
+		<RelNode type="EnumerableProject">
+			<Property name="L_ORDERKEY">
+				$0
+			</Property>
+			<Property name="REVENUE">
+				$3
+			</Property>
+			<Property name="O_ORDERDATE">
+				$1
+			</Property>
+			<Property name="O_SHIPPRIORITY">
+				$2
+			</Property>
+			<Inputs>
+				<RelNode type="EnumerableAggregate">
+					<Property name="group">
+						{0, 1, 2}
+					</Property>
+					<Property name="REVENUE">
+						SUM($3)
+					</Property>
+					<Inputs>
+						<RelNode type="EnumerableProject">
+							<Property name="l_orderkey">
+								$17
+							</Property>
+							<Property name="o_orderdate">
+								$12
+							</Property>
+							<Property name="o_shippriority">
+								$15
+							</Property>
+							<Property name="$f3">
+								*($22, -(1, $23))
+							</Property>
+							<Inputs>
+								<RelNode type="EnumerableHashJoin">
+									<Property name="condition">
+										=($8, $17)
+									</Property>
+									<Property name="joinType">
+										inner
+									</Property>
+									<Inputs>
+										<RelNode type="EnumerableHashJoin">
+											<Property name="condition">
+												=($0, $9)
+											</Property>
+											<Property name="joinType">
+												inner
+											</Property>
+											<Inputs>
+												<RelNode type="EnumerableFilter">
+													<Property name="condition">
+														=($6, &#39;BUILDING&#39;)
+													</Property>
+													<Inputs>
+														<RelNode type="EnumerableTableScan">
+															<Property name="table">
+																[CUSTOMER]
+															</Property>
+															<Inputs/>
+														</RelNode>
+													</Inputs>
+												</RelNode>
+												<RelNode type="EnumerableFilter">
+													<Property name="condition">
+														&#60;($4, 1995-03-15)
+													</Property>
+													<Inputs>
+														<RelNode type="EnumerableTableScan">
+															<Property name="table">
+																[ORDERS]
+															</Property>
+															<Inputs/>
+														</RelNode>
+													</Inputs>
+												</RelNode>
+											</Inputs>
+										</RelNode>
+										<RelNode type="EnumerableFilter">
+											<Property name="condition">
+												&#62;($10, 1995-03-15)
+											</Property>
+											<Inputs>
+												<RelNode type="EnumerableTableScan">
+													<Property name="table">
+														[LINEITEM]
+													</Property>
+													<Inputs/>
+												</RelNode>
+											</Inputs>
+										</RelNode>
+									</Inputs>
+								</RelNode>
+							</Inputs>
+						</RelNode>
+					</Inputs>
+				</RelNode>
+			</Inputs>
+		</RelNode>
+	</Inputs>
+</RelNode>

@@ -1,6 +1,5 @@
 package hk.hku.cs.calcite.controller;
 
-import com.google.gson.Gson;
 import hk.hku.cs.calcite.entity.Plan;
 import hk.hku.cs.calcite.service.PlanService;
 import hk.hku.cs.calcite.util.CommandUtil;
@@ -25,11 +24,20 @@ public class PlanController {
     private final AtomicInteger counter = new AtomicInteger();
     private PlanService planService;
 
+    @Value("${calcite.path.sql}")
+    private String sqlPath;
+
+    @Value("${calcite.path.text}")
+    private String textPath;
+
     @Value("${calcite.path.json}")
     private String jsonPath;
 
-    @Value("${calcite.path.sql}")
-    private String sqlPath;
+    @Value("${calcite.path.xml}")
+    private String xmlPath;
+
+    @Value("${calcite.path.dot}")
+    private String dotPath;
 
 
     @Autowired
@@ -49,16 +57,20 @@ public class PlanController {
         }
 
         logger.info("Output:\n" + plan.getPhysicalPlan());
-        logger.info(plan.getJsonPlan());
+        logger.info("Output in JSON:\n" + plan.getJsonPlan());
+        logger.info("Output in XML:\n" + plan.getXmlPlan());
+        logger.info("Output in DOT:\n" + plan.getDotPlan());
         return plan;
     }
 
     @GetMapping("/plan/file")
-    public Plan queryWithFile(@RequestParam(value = "filename", defaultValue = "") String filename) {
-
+    public String queryWithFile(@RequestParam(value = "filename", defaultValue = "") String filename) {
         logger.info("Input:\n" + filename);
         String filePath = sqlPath + filename;
-        String outputPath = (jsonPath + filename).replace("sql", "json");
+        String textOutput = (textPath + filename).replace("sql", "txt");
+        String jsonOutput = (jsonPath + filename).replace("sql", "json");
+        String xmlOutput = (xmlPath + filename).replace("sql", "xml");
+        String dotOutput = (dotPath + filename).replace("sql", "txt");
 
         String sql = null;
         try {
@@ -80,21 +92,20 @@ public class PlanController {
         Date date = new Date(); // 获取当前时间
         logger.info(sdf.format(date));
 
-        Gson gson = new Gson();
-        String json1 = gson.toJson(plan);
-        String json2 = gson.toJson(plan.getPhysicalPlan());
-
         try {
-            TpchUtil.stringToFile(outputPath, json1 + json2);
+            TpchUtil.stringToFile(textOutput, plan.getPhysicalPlan());
+            TpchUtil.stringToFile(jsonOutput, plan.getJsonPlan());
+            TpchUtil.stringToFile(xmlOutput, plan.getXmlPlan());
+            TpchUtil.stringToFile(dotOutput, plan.getDotPlan());
         } catch (IOException e) {
             logger.error(e.getMessage());
         }
 
-        String[] array1 = {"cat", "plan.json"};
-        String[] array2 = {"stat", "plan.json"};
+        String[] array1 = {"cat", jsonOutput};
+        String[] array2 = {"stat", jsonOutput};
         String res1 = CommandUtil.callCMD(array1);
         String res2 = CommandUtil.callCMD(array2);
 
-        return plan;
+        return res1 + "<br/><br/>" + res2;
     }
 }
