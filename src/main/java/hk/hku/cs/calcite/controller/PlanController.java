@@ -3,6 +3,7 @@ package hk.hku.cs.calcite.controller;
 import hk.hku.cs.calcite.entity.Plan;
 import hk.hku.cs.calcite.service.PlanService;
 import hk.hku.cs.calcite.util.CommandUtil;
+import hk.hku.cs.calcite.util.StringUtil;
 import hk.hku.cs.calcite.util.TpchUtil;
 import org.apache.calcite.sql.parser.SqlParseException;
 import org.slf4j.Logger;
@@ -15,7 +16,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @RestController
@@ -39,6 +40,9 @@ public class PlanController {
     @Value("${calcite.path.dot}")
     private String dotPath;
 
+    @Value("${velox.exec.path}")
+    private String execPath;
+
 
     @Autowired
     public PlanController(PlanService planService) {
@@ -46,7 +50,7 @@ public class PlanController {
     }
 
     @GetMapping("/plan")
-    public Plan query(@RequestParam(value = "sql", defaultValue = "") String sql) {
+    public List<Map<Integer, String>> query(@RequestParam(value = "sql", defaultValue = "") String sql) {
         logger.info("Input:\n" + sql);
 
         Plan plan = new Plan(counter.incrementAndGet(), sql);
@@ -60,17 +64,44 @@ public class PlanController {
         logger.info("Output in JSON:\n" + plan.getJsonPlan());
         logger.info("Output in XML:\n" + plan.getXmlPlan());
         logger.info("Output in DOT:\n" + plan.getDotPlan());
-        return plan;
+
+        String textOutput = textPath + plan.getId() + "txt";
+        String jsonOutput = jsonPath + plan.getId() + "json";
+        String xmlOutput = xmlPath + plan.getId() + "xml";
+        String dotOutput = dotPath + plan.getId() + "txt";
+
+        try {
+            TpchUtil.stringToFile(textOutput, plan.getPhysicalPlan());
+            TpchUtil.stringToFile(jsonOutput, plan.getJsonPlan());
+            TpchUtil.stringToFile(xmlOutput, plan.getXmlPlan());
+            TpchUtil.stringToFile(dotOutput, plan.getDotPlan());
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+        }
+
+        String[] execArgs = {execPath, jsonOutput};
+        String res = CommandUtil.callCMD(execArgs);
+        logger.info("Velox return string: " + res);
+
+        List<Map<Integer, String>> data = new ArrayList<>();
+        Map<Integer, String> header = StringUtil.extractHeader(res);
+        List<Map<Integer, String>> rowData = StringUtil.extractData(res);
+        data.add(header);
+        data.addAll(rowData);
+        return data;
     }
 
     @GetMapping("/plan/file")
-    public String queryWithFile(@RequestParam(value = "filename", defaultValue = "") String filename) {
+    public List<Map<Integer, String>> queryWithFile(@RequestParam(value = "filename", defaultValue = "") String filename) {
+
         logger.info("Input:\n" + filename);
         String filePath = sqlPath + filename;
+//        String outputPath = (jsonPath + filename).replace("sql", "json");
         String textOutput = (textPath + filename).replace("sql", "txt");
         String jsonOutput = (jsonPath + filename).replace("sql", "json");
         String xmlOutput = (xmlPath + filename).replace("sql", "xml");
         String dotOutput = (dotPath + filename).replace("sql", "txt");
+//        String outputPath = prefix + jsonOutput;
 
         String sql = null;
         try {
@@ -92,7 +123,10 @@ public class PlanController {
         Date date = new Date(); // 获取当前时间
         logger.info(sdf.format(date));
 
+//        String json = plan.getJsonPlan();
+
         try {
+//            TpchUtil.stringToFile(outputPath, json);
             TpchUtil.stringToFile(textOutput, plan.getPhysicalPlan());
             TpchUtil.stringToFile(jsonOutput, plan.getJsonPlan());
             TpchUtil.stringToFile(xmlOutput, plan.getXmlPlan());
@@ -101,11 +135,22 @@ public class PlanController {
             logger.error(e.getMessage());
         }
 
-        String[] array1 = {"cat", jsonOutput};
-        String[] array2 = {"stat", jsonOutput};
-        String res1 = CommandUtil.callCMD(array1);
-        String res2 = CommandUtil.callCMD(array2);
+//        String[] array1 = {"cat", outputPath};
+//        String[] array2 = {"stat", outputPath};
+//        String res1 = CommandUtil.callCMD(array1);
+//        String res2 = CommandUtil.callCMD(array2);
 
-        return res1 + "<br/><br/>" + res2;
+//        String[] array3 = {"/Users/apple/velox/cmake-build-release/velox/exec/tests/velox_in_10_min_demo",
+//                outputPath};
+        String[] execArgs = {execPath, jsonOutput};
+        String res = CommandUtil.callCMD(execArgs);
+        logger.info("Velox return string: " + res);
+
+        List<Map<Integer, String>> data = new ArrayList<>();
+        Map<Integer, String> header = StringUtil.extractHeader(res);
+        List<Map<Integer, String>> rowData = StringUtil.extractData(res);
+        data.add(header);
+        data.addAll(rowData);
+        return data;
     }
 }

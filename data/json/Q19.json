@@ -1,0 +1,1029 @@
+{
+  "rels": [
+    {
+      "id": "0",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableTableScan",
+      "table": [
+        "LINEITEM"
+      ],
+      "inputs": []
+    },
+    {
+      "id": "1",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableTableScan",
+      "table": [
+        "PART"
+      ],
+      "inputs": []
+    },
+    {
+      "id": "2",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableNestedLoopJoin",
+      "condition": {
+        "op": {
+          "name": "OR",
+          "kind": "OR",
+          "syntax": "BINARY"
+        },
+        "operands": [
+          {
+            "op": {
+              "name": "AND",
+              "kind": "AND",
+              "syntax": "BINARY"
+            },
+            "operands": [
+              {
+                "op": {
+                  "name": "=",
+                  "kind": "EQUALS",
+                  "syntax": "BINARY"
+                },
+                "operands": [
+                  {
+                    "input": 16,
+                    "name": "$16"
+                  },
+                  {
+                    "input": 1,
+                    "name": "$1"
+                  }
+                ]
+              },
+              {
+                "op": {
+                  "name": "=",
+                  "kind": "EQUALS",
+                  "syntax": "BINARY"
+                },
+                "operands": [
+                  {
+                    "input": 19,
+                    "name": "$19"
+                  },
+                  {
+                    "literal": "Brand#12",
+                    "type": {
+                      "type": "VARCHAR",
+                      "nullable": false,
+                      "precision": -1
+                    }
+                  }
+                ]
+              },
+              {
+                "op": {
+                  "name": "OR",
+                  "kind": "OR",
+                  "syntax": "BINARY"
+                },
+                "operands": [
+                  {
+                    "op": {
+                      "name": "=",
+                      "kind": "EQUALS",
+                      "syntax": "BINARY"
+                    },
+                    "operands": [
+                      {
+                        "input": 22,
+                        "name": "$22"
+                      },
+                      {
+                        "literal": "SM CASE",
+                        "type": {
+                          "type": "CHAR",
+                          "nullable": false,
+                          "precision": 7
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "op": {
+                      "name": "=",
+                      "kind": "EQUALS",
+                      "syntax": "BINARY"
+                    },
+                    "operands": [
+                      {
+                        "input": 22,
+                        "name": "$22"
+                      },
+                      {
+                        "literal": "SM BOX",
+                        "type": {
+                          "type": "CHAR",
+                          "nullable": false,
+                          "precision": 6
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "op": {
+                      "name": "=",
+                      "kind": "EQUALS",
+                      "syntax": "BINARY"
+                    },
+                    "operands": [
+                      {
+                        "input": 22,
+                        "name": "$22"
+                      },
+                      {
+                        "literal": "SM PACK",
+                        "type": {
+                          "type": "CHAR",
+                          "nullable": false,
+                          "precision": 7
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "op": {
+                      "name": "=",
+                      "kind": "EQUALS",
+                      "syntax": "BINARY"
+                    },
+                    "operands": [
+                      {
+                        "input": 22,
+                        "name": "$22"
+                      },
+                      {
+                        "literal": "SM PKG",
+                        "type": {
+                          "type": "CHAR",
+                          "nullable": false,
+                          "precision": 6
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "op": {
+                  "name": ">=",
+                  "kind": "GREATER_THAN_OR_EQUAL",
+                  "syntax": "BINARY"
+                },
+                "operands": [
+                  {
+                    "input": 4,
+                    "name": "$4"
+                  },
+                  {
+                    "literal": 1,
+                    "type": {
+                      "type": "INTEGER",
+                      "nullable": false
+                    }
+                  }
+                ]
+              },
+              {
+                "op": {
+                  "name": "<=",
+                  "kind": "LESS_THAN_OR_EQUAL",
+                  "syntax": "BINARY"
+                },
+                "operands": [
+                  {
+                    "input": 4,
+                    "name": "$4"
+                  },
+                  {
+                    "op": {
+                      "name": "+",
+                      "kind": "PLUS",
+                      "syntax": "BINARY"
+                    },
+                    "operands": [
+                      {
+                        "literal": 1,
+                        "type": {
+                          "type": "INTEGER",
+                          "nullable": false
+                        }
+                      },
+                      {
+                        "literal": 10,
+                        "type": {
+                          "type": "INTEGER",
+                          "nullable": false
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "op": {
+                  "name": ">=",
+                  "kind": "GREATER_THAN_OR_EQUAL",
+                  "syntax": "BINARY"
+                },
+                "operands": [
+                  {
+                    "input": 21,
+                    "name": "$21"
+                  },
+                  {
+                    "literal": 1,
+                    "type": {
+                      "type": "INTEGER",
+                      "nullable": false
+                    }
+                  }
+                ]
+              },
+              {
+                "op": {
+                  "name": "<=",
+                  "kind": "LESS_THAN_OR_EQUAL",
+                  "syntax": "BINARY"
+                },
+                "operands": [
+                  {
+                    "input": 21,
+                    "name": "$21"
+                  },
+                  {
+                    "literal": 5,
+                    "type": {
+                      "type": "INTEGER",
+                      "nullable": false
+                    }
+                  }
+                ]
+              },
+              {
+                "op": {
+                  "name": "OR",
+                  "kind": "OR",
+                  "syntax": "BINARY"
+                },
+                "operands": [
+                  {
+                    "op": {
+                      "name": "=",
+                      "kind": "EQUALS",
+                      "syntax": "BINARY"
+                    },
+                    "operands": [
+                      {
+                        "input": 14,
+                        "name": "$14"
+                      },
+                      {
+                        "literal": "AIR",
+                        "type": {
+                          "type": "CHAR",
+                          "nullable": false,
+                          "precision": 3
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "op": {
+                      "name": "=",
+                      "kind": "EQUALS",
+                      "syntax": "BINARY"
+                    },
+                    "operands": [
+                      {
+                        "input": 14,
+                        "name": "$14"
+                      },
+                      {
+                        "literal": "AIR REG",
+                        "type": {
+                          "type": "CHAR",
+                          "nullable": false,
+                          "precision": 7
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "op": {
+                  "name": "=",
+                  "kind": "EQUALS",
+                  "syntax": "BINARY"
+                },
+                "operands": [
+                  {
+                    "input": 13,
+                    "name": "$13"
+                  },
+                  {
+                    "literal": "DELIVER IN PERSON",
+                    "type": {
+                      "type": "VARCHAR",
+                      "nullable": false,
+                      "precision": -1
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "op": {
+              "name": "AND",
+              "kind": "AND",
+              "syntax": "BINARY"
+            },
+            "operands": [
+              {
+                "op": {
+                  "name": "=",
+                  "kind": "EQUALS",
+                  "syntax": "BINARY"
+                },
+                "operands": [
+                  {
+                    "input": 16,
+                    "name": "$16"
+                  },
+                  {
+                    "input": 1,
+                    "name": "$1"
+                  }
+                ]
+              },
+              {
+                "op": {
+                  "name": "=",
+                  "kind": "EQUALS",
+                  "syntax": "BINARY"
+                },
+                "operands": [
+                  {
+                    "input": 19,
+                    "name": "$19"
+                  },
+                  {
+                    "literal": "Brand#23",
+                    "type": {
+                      "type": "VARCHAR",
+                      "nullable": false,
+                      "precision": -1
+                    }
+                  }
+                ]
+              },
+              {
+                "op": {
+                  "name": "OR",
+                  "kind": "OR",
+                  "syntax": "BINARY"
+                },
+                "operands": [
+                  {
+                    "op": {
+                      "name": "=",
+                      "kind": "EQUALS",
+                      "syntax": "BINARY"
+                    },
+                    "operands": [
+                      {
+                        "input": 22,
+                        "name": "$22"
+                      },
+                      {
+                        "literal": "ED BAG",
+                        "type": {
+                          "type": "CHAR",
+                          "nullable": false,
+                          "precision": 6
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "op": {
+                      "name": "=",
+                      "kind": "EQUALS",
+                      "syntax": "BINARY"
+                    },
+                    "operands": [
+                      {
+                        "input": 22,
+                        "name": "$22"
+                      },
+                      {
+                        "literal": "ED BOX",
+                        "type": {
+                          "type": "CHAR",
+                          "nullable": false,
+                          "precision": 6
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "op": {
+                      "name": "=",
+                      "kind": "EQUALS",
+                      "syntax": "BINARY"
+                    },
+                    "operands": [
+                      {
+                        "input": 22,
+                        "name": "$22"
+                      },
+                      {
+                        "literal": "ED PKG",
+                        "type": {
+                          "type": "CHAR",
+                          "nullable": false,
+                          "precision": 6
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "op": {
+                      "name": "=",
+                      "kind": "EQUALS",
+                      "syntax": "BINARY"
+                    },
+                    "operands": [
+                      {
+                        "input": 22,
+                        "name": "$22"
+                      },
+                      {
+                        "literal": "ED PACK",
+                        "type": {
+                          "type": "CHAR",
+                          "nullable": false,
+                          "precision": 7
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "op": {
+                  "name": ">=",
+                  "kind": "GREATER_THAN_OR_EQUAL",
+                  "syntax": "BINARY"
+                },
+                "operands": [
+                  {
+                    "input": 4,
+                    "name": "$4"
+                  },
+                  {
+                    "literal": 10,
+                    "type": {
+                      "type": "INTEGER",
+                      "nullable": false
+                    }
+                  }
+                ]
+              },
+              {
+                "op": {
+                  "name": "<=",
+                  "kind": "LESS_THAN_OR_EQUAL",
+                  "syntax": "BINARY"
+                },
+                "operands": [
+                  {
+                    "input": 4,
+                    "name": "$4"
+                  },
+                  {
+                    "op": {
+                      "name": "+",
+                      "kind": "PLUS",
+                      "syntax": "BINARY"
+                    },
+                    "operands": [
+                      {
+                        "literal": 10,
+                        "type": {
+                          "type": "INTEGER",
+                          "nullable": false
+                        }
+                      },
+                      {
+                        "literal": 10,
+                        "type": {
+                          "type": "INTEGER",
+                          "nullable": false
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "op": {
+                  "name": ">=",
+                  "kind": "GREATER_THAN_OR_EQUAL",
+                  "syntax": "BINARY"
+                },
+                "operands": [
+                  {
+                    "input": 21,
+                    "name": "$21"
+                  },
+                  {
+                    "literal": 1,
+                    "type": {
+                      "type": "INTEGER",
+                      "nullable": false
+                    }
+                  }
+                ]
+              },
+              {
+                "op": {
+                  "name": "<=",
+                  "kind": "LESS_THAN_OR_EQUAL",
+                  "syntax": "BINARY"
+                },
+                "operands": [
+                  {
+                    "input": 21,
+                    "name": "$21"
+                  },
+                  {
+                    "literal": 10,
+                    "type": {
+                      "type": "INTEGER",
+                      "nullable": false
+                    }
+                  }
+                ]
+              },
+              {
+                "op": {
+                  "name": "OR",
+                  "kind": "OR",
+                  "syntax": "BINARY"
+                },
+                "operands": [
+                  {
+                    "op": {
+                      "name": "=",
+                      "kind": "EQUALS",
+                      "syntax": "BINARY"
+                    },
+                    "operands": [
+                      {
+                        "input": 14,
+                        "name": "$14"
+                      },
+                      {
+                        "literal": "IR",
+                        "type": {
+                          "type": "CHAR",
+                          "nullable": false,
+                          "precision": 2
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "op": {
+                      "name": "=",
+                      "kind": "EQUALS",
+                      "syntax": "BINARY"
+                    },
+                    "operands": [
+                      {
+                        "input": 14,
+                        "name": "$14"
+                      },
+                      {
+                        "literal": "IR REG",
+                        "type": {
+                          "type": "CHAR",
+                          "nullable": false,
+                          "precision": 6
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "op": {
+                  "name": "=",
+                  "kind": "EQUALS",
+                  "syntax": "BINARY"
+                },
+                "operands": [
+                  {
+                    "input": 13,
+                    "name": "$13"
+                  },
+                  {
+                    "literal": "ELIVER IN PERSON",
+                    "type": {
+                      "type": "VARCHAR",
+                      "nullable": false,
+                      "precision": -1
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "op": {
+              "name": "AND",
+              "kind": "AND",
+              "syntax": "BINARY"
+            },
+            "operands": [
+              {
+                "op": {
+                  "name": "=",
+                  "kind": "EQUALS",
+                  "syntax": "BINARY"
+                },
+                "operands": [
+                  {
+                    "input": 16,
+                    "name": "$16"
+                  },
+                  {
+                    "input": 1,
+                    "name": "$1"
+                  }
+                ]
+              },
+              {
+                "op": {
+                  "name": "=",
+                  "kind": "EQUALS",
+                  "syntax": "BINARY"
+                },
+                "operands": [
+                  {
+                    "input": 19,
+                    "name": "$19"
+                  },
+                  {
+                    "literal": "Brand#34",
+                    "type": {
+                      "type": "VARCHAR",
+                      "nullable": false,
+                      "precision": -1
+                    }
+                  }
+                ]
+              },
+              {
+                "op": {
+                  "name": "OR",
+                  "kind": "OR",
+                  "syntax": "BINARY"
+                },
+                "operands": [
+                  {
+                    "op": {
+                      "name": "=",
+                      "kind": "EQUALS",
+                      "syntax": "BINARY"
+                    },
+                    "operands": [
+                      {
+                        "input": 22,
+                        "name": "$22"
+                      },
+                      {
+                        "literal": "G CASE",
+                        "type": {
+                          "type": "CHAR",
+                          "nullable": false,
+                          "precision": 6
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "op": {
+                      "name": "=",
+                      "kind": "EQUALS",
+                      "syntax": "BINARY"
+                    },
+                    "operands": [
+                      {
+                        "input": 22,
+                        "name": "$22"
+                      },
+                      {
+                        "literal": "G BOX",
+                        "type": {
+                          "type": "CHAR",
+                          "nullable": false,
+                          "precision": 5
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "op": {
+                      "name": "=",
+                      "kind": "EQUALS",
+                      "syntax": "BINARY"
+                    },
+                    "operands": [
+                      {
+                        "input": 22,
+                        "name": "$22"
+                      },
+                      {
+                        "literal": "G PACK",
+                        "type": {
+                          "type": "CHAR",
+                          "nullable": false,
+                          "precision": 6
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "op": {
+                      "name": "=",
+                      "kind": "EQUALS",
+                      "syntax": "BINARY"
+                    },
+                    "operands": [
+                      {
+                        "input": 22,
+                        "name": "$22"
+                      },
+                      {
+                        "literal": "G PKG",
+                        "type": {
+                          "type": "CHAR",
+                          "nullable": false,
+                          "precision": 5
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "op": {
+                  "name": ">=",
+                  "kind": "GREATER_THAN_OR_EQUAL",
+                  "syntax": "BINARY"
+                },
+                "operands": [
+                  {
+                    "input": 4,
+                    "name": "$4"
+                  },
+                  {
+                    "literal": 20,
+                    "type": {
+                      "type": "INTEGER",
+                      "nullable": false
+                    }
+                  }
+                ]
+              },
+              {
+                "op": {
+                  "name": "<=",
+                  "kind": "LESS_THAN_OR_EQUAL",
+                  "syntax": "BINARY"
+                },
+                "operands": [
+                  {
+                    "input": 4,
+                    "name": "$4"
+                  },
+                  {
+                    "op": {
+                      "name": "+",
+                      "kind": "PLUS",
+                      "syntax": "BINARY"
+                    },
+                    "operands": [
+                      {
+                        "literal": 20,
+                        "type": {
+                          "type": "INTEGER",
+                          "nullable": false
+                        }
+                      },
+                      {
+                        "literal": 10,
+                        "type": {
+                          "type": "INTEGER",
+                          "nullable": false
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "op": {
+                  "name": ">=",
+                  "kind": "GREATER_THAN_OR_EQUAL",
+                  "syntax": "BINARY"
+                },
+                "operands": [
+                  {
+                    "input": 21,
+                    "name": "$21"
+                  },
+                  {
+                    "literal": 1,
+                    "type": {
+                      "type": "INTEGER",
+                      "nullable": false
+                    }
+                  }
+                ]
+              },
+              {
+                "op": {
+                  "name": "<=",
+                  "kind": "LESS_THAN_OR_EQUAL",
+                  "syntax": "BINARY"
+                },
+                "operands": [
+                  {
+                    "input": 21,
+                    "name": "$21"
+                  },
+                  {
+                    "literal": 15,
+                    "type": {
+                      "type": "INTEGER",
+                      "nullable": false
+                    }
+                  }
+                ]
+              },
+              {
+                "op": {
+                  "name": "OR",
+                  "kind": "OR",
+                  "syntax": "BINARY"
+                },
+                "operands": [
+                  {
+                    "op": {
+                      "name": "=",
+                      "kind": "EQUALS",
+                      "syntax": "BINARY"
+                    },
+                    "operands": [
+                      {
+                        "input": 14,
+                        "name": "$14"
+                      },
+                      {
+                        "literal": "IR",
+                        "type": {
+                          "type": "CHAR",
+                          "nullable": false,
+                          "precision": 2
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "op": {
+                      "name": "=",
+                      "kind": "EQUALS",
+                      "syntax": "BINARY"
+                    },
+                    "operands": [
+                      {
+                        "input": 14,
+                        "name": "$14"
+                      },
+                      {
+                        "literal": "IR REG",
+                        "type": {
+                          "type": "CHAR",
+                          "nullable": false,
+                          "precision": 6
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "op": {
+                  "name": "=",
+                  "kind": "EQUALS",
+                  "syntax": "BINARY"
+                },
+                "operands": [
+                  {
+                    "input": 13,
+                    "name": "$13"
+                  },
+                  {
+                    "literal": "ELIVER IN PERSON",
+                    "type": {
+                      "type": "VARCHAR",
+                      "nullable": false,
+                      "precision": -1
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "joinType": "inner",
+      "inputs": [
+        "0",
+        "1"
+      ]
+    },
+    {
+      "id": "3",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableProject",
+      "fields": [
+        "$f0"
+      ],
+      "exprs": [
+        {
+          "op": {
+            "name": "*",
+            "kind": "TIMES",
+            "syntax": "BINARY"
+          },
+          "operands": [
+            {
+              "input": 5,
+              "name": "$5"
+            },
+            {
+              "op": {
+                "name": "-",
+                "kind": "MINUS",
+                "syntax": "BINARY"
+              },
+              "operands": [
+                {
+                  "literal": 1.0,
+                  "type": {
+                    "type": "DECIMAL",
+                    "nullable": false,
+                    "precision": 2,
+                    "scale": 1
+                  }
+                },
+                {
+                  "input": 6,
+                  "name": "$6"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableAggregate",
+      "group": [],
+      "aggs": [
+        {
+          "agg": {
+            "name": "SUM",
+            "kind": "SUM",
+            "syntax": "FUNCTION"
+          },
+          "type": {
+            "type": "DOUBLE",
+            "nullable": true
+          },
+          "distinct": false,
+          "operands": [
+            0
+          ],
+          "name": "REVENUE"
+        }
+      ]
+    }
+  ]
+}

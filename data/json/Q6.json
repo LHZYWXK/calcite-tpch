@@ -1,0 +1,180 @@
+{
+  "rels": [
+    {
+      "id": "0",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableTableScan",
+      "table": [
+        "LINEITEM"
+      ],
+      "inputs": []
+    },
+    {
+      "id": "1",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableFilter",
+      "condition": {
+        "op": {
+          "name": "AND",
+          "kind": "AND",
+          "syntax": "BINARY"
+        },
+        "operands": [
+          {
+            "op": {
+              "name": ">=",
+              "kind": "GREATER_THAN_OR_EQUAL",
+              "syntax": "BINARY"
+            },
+            "operands": [
+              {
+                "input": 10,
+                "name": "$10"
+              },
+              {
+                "literal": 8766,
+                "type": {
+                  "type": "DATE",
+                  "nullable": false
+                }
+              }
+            ]
+          },
+          {
+            "op": {
+              "name": "<",
+              "kind": "LESS_THAN",
+              "syntax": "BINARY"
+            },
+            "operands": [
+              {
+                "input": 10,
+                "name": "$10"
+              },
+              {
+                "literal": 9131,
+                "type": {
+                  "type": "DATE",
+                  "nullable": false
+                }
+              }
+            ]
+          },
+          {
+            "op": {
+              "name": ">=",
+              "kind": "GREATER_THAN_OR_EQUAL",
+              "syntax": "BINARY"
+            },
+            "operands": [
+              {
+                "input": 6,
+                "name": "$6"
+              },
+              {
+                "literal": 0.05,
+                "type": {
+                  "type": "DECIMAL",
+                  "nullable": false,
+                  "precision": 3,
+                  "scale": 2
+                }
+              }
+            ]
+          },
+          {
+            "op": {
+              "name": "<=",
+              "kind": "LESS_THAN_OR_EQUAL",
+              "syntax": "BINARY"
+            },
+            "operands": [
+              {
+                "input": 6,
+                "name": "$6"
+              },
+              {
+                "literal": 0.07,
+                "type": {
+                  "type": "DECIMAL",
+                  "nullable": false,
+                  "precision": 3,
+                  "scale": 2
+                }
+              }
+            ]
+          },
+          {
+            "op": {
+              "name": "<",
+              "kind": "LESS_THAN",
+              "syntax": "BINARY"
+            },
+            "operands": [
+              {
+                "input": 4,
+                "name": "$4"
+              },
+              {
+                "literal": 24.0,
+                "type": {
+                  "type": "DECIMAL",
+                  "nullable": false,
+                  "precision": 3,
+                  "scale": 1
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "2",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableProject",
+      "fields": [
+        "$f0"
+      ],
+      "exprs": [
+        {
+          "op": {
+            "name": "*",
+            "kind": "TIMES",
+            "syntax": "BINARY"
+          },
+          "operands": [
+            {
+              "input": 5,
+              "name": "$5"
+            },
+            {
+              "input": 6,
+              "name": "$6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "relOp": "org.apache.calcite.adapter.enumerable.EnumerableAggregate",
+      "group": [],
+      "aggs": [
+        {
+          "agg": {
+            "name": "SUM",
+            "kind": "SUM",
+            "syntax": "FUNCTION"
+          },
+          "type": {
+            "type": "DOUBLE",
+            "nullable": true
+          },
+          "distinct": false,
+          "operands": [
+            0
+          ],
+          "name": "REVENUE"
+        }
+      ]
+    }
+  ]
+}

@@ -13,36 +13,76 @@
       "relOp": "org.apache.calcite.adapter.enumerable.EnumerableFilter",
       "condition": {
         "op": {
-          "name": "<=",
-          "kind": "LESS_THAN_OR_EQUAL",
+          "name": "OR",
+          "kind": "OR",
           "syntax": "BINARY"
         },
         "operands": [
           {
-            "input": 10,
-            "name": "$10"
-          },
-          {
             "op": {
-              "name": "-",
-              "kind": "MINUS",
-              "syntax": "SPECIAL"
+              "name": "AND",
+              "kind": "AND",
+              "syntax": "BINARY"
             },
             "operands": [
               {
-                "literal": 10561,
+                "op": {
+                  "name": "<=",
+                  "kind": "LESS_THAN_OR_EQUAL",
+                  "syntax": "BINARY"
+                },
+                "operands": [
+                  {
+                    "input": 10,
+                    "name": "$10"
+                  },
+                  {
+                    "literal": 10561,
+                    "type": {
+                      "type": "DATE",
+                      "nullable": false
+                    }
+                  }
+                ]
+              },
+              {
+                "op": {
+                  "name": ">",
+                  "kind": "GREATER_THAN",
+                  "syntax": "BINARY"
+                },
+                "operands": [
+                  {
+                    "input": 10,
+                    "name": "$10"
+                  },
+                  {
+                    "literal": 9862,
+                    "type": {
+                      "type": "DATE",
+                      "nullable": false
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "op": {
+              "name": ">",
+              "kind": "GREATER_THAN",
+              "syntax": "BINARY"
+            },
+            "operands": [
+              {
+                "input": 10,
+                "name": "$10"
+              },
+              {
+                "literal": 10957,
                 "type": {
                   "type": "DATE",
                   "nullable": false
-                }
-              },
-              {
-                "literal": 7776000000,
-                "type": {
-                  "type": "INTERVAL_DAY",
-                  "nullable": false,
-                  "precision": 2,
-                  "scale": 6
                 }
               }
             ]
@@ -98,10 +138,12 @@
               },
               "operands": [
                 {
-                  "literal": 1,
+                  "literal": 1.0,
                   "type": {
-                    "type": "INTEGER",
-                    "nullable": false
+                    "type": "DECIMAL",
+                    "nullable": false,
+                    "precision": 2,
+                    "scale": 1
                   }
                 },
                 {
@@ -138,10 +180,12 @@
                   },
                   "operands": [
                     {
-                      "literal": 1,
+                      "literal": 1.0,
                       "type": {
-                        "type": "INTEGER",
-                        "nullable": false
+                        "type": "DECIMAL",
+                        "nullable": false,
+                        "precision": 2,
+                        "scale": 1
                       }
                     },
                     {
@@ -160,10 +204,12 @@
               },
               "operands": [
                 {
-                  "literal": 1,
+                  "literal": 1.0,
                   "type": {
-                    "type": "INTEGER",
-                    "nullable": false
+                    "type": "DECIMAL",
+                    "nullable": false,
+                    "precision": 2,
+                    "scale": 1
                   }
                 },
                 {

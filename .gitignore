@@ -4,6 +4,11 @@ target/
 !**/src/test/**/target/
 
 logs/
+<<<<<<< HEAD
+=======
+#data/json/**
+#data/queries/**
+>>>>>>> 4900155e2b050381e9cd77c47e6066376ba00395
 
 ### STS ###
 .apt_generated
